@@ -1,0 +1,36 @@
+<md-card style="padding-bottom: 15px">
+    <md-card-title>
+        <md-card-title-text>
+          <h2>Upload File</h2>
+        </md-card-title-text>
+    </md-card-title>
+
+
+
+<div layout-gt-xs="row" style="padding-left: 15px; padding-right: 10px;">
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>File Name</label>
+        <input type="text" ng-model="upload.filename" required/>
+    </md-input-container>
+</div>
+
+<div layout-gt-xs="row" style="padding-left: 15px; padding-right: 10px;">
+    <md-select ng-model="upload.type" placeholder="Document Type" class="md-no-underline" required>
+        <md-option value="degree">Degree Certificate</md-option>
+        <md-option value="driving">Driving License</md-option>
+        <md-option value="aadhar">Aadhar Card</md-option>
+        <md-option value="passport">Passport</md-option>
+        <md-option value="pan">PAN Card</md-option>
+    </md-select>
+</div>
+
+<div layout-gt-xs="row" style="padding-left: 15px; padding-right: 10px;">
+    <md-input-container class="md-block" flex-gt-xs>
+            <lf-ng-md-file-input lf-files="upload.file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf, image/jpg, image/png" preview></lf-ng-md-file-input> 
+    </md-input-container>
+</div>
+
+<div layout-gt-xs="row" style="padding-left: 15px; padding-right: 10px;">
+    <md-button class="md-raised" ng-click="controller.fileUpload(upload,currentUser.username)">Upload</md-button>
+</div>
+</md-card>

@@ -1,0 +1,33 @@
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+          <h2>Permitted Views</h2>
+        </md-card-title-text>
+    </md-card-title>
+    <div class="table-responsive" ng-init="controller.permittedRequests(currentUser.username)">
+        <md-table-container>
+        <table md-table>
+            <thead md-head>
+                <tr md-row>
+                    <th md-column>Type</th>
+                    <th md-column>First Name</th>
+                    <th md-column>Last Name</th>
+                    <th md-column>Username</th>
+                    <th md-column>Email</th>  
+                    <th md-column>Action</th>                  
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="account in accounts">
+                    <td md-cell>{{account.role}}</td>
+                    <td md-cell>{{account.firstname}}</td>
+                    <td md-cell>{{account.lastname}}</td>
+                    <td md-cell>{{account.username}}</td>
+                    <td md-cell>{{account.email}}</td>  
+                    <td md-cell><md-button ng-click="controller.removeView(currentUser.username,account.username)">Remove</md-button></td>
+                </tr>
+            </tbody>
+        </table>
+        </md-table-container>
+    </div>
+

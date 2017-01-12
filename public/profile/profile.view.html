@@ -1,0 +1,76 @@
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+              <h2>Profile</h2>
+            </md-card-title-text>
+        </md-card-title>
+        <div>
+            <md-table-container>
+            <table md-table>
+                <tbody md-body>
+                    <tr md-row>
+                        <td md-cell>First Name</td>
+                        <td md-cell>{{currentUser.firstname}}</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Last Name</td>
+                        <td md-cell>{{currentUser.lastname}}</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Email</td>
+                        <td md-cell>{{currentUser.email}}</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Username</td>
+                        <td md-cell>{{currentUser.username}}</td>
+                    </tr>
+                    <tr md-row>
+                        <td md-cell>Password</td>
+                        <td md-cell>{{currentUser.password}}</td>
+                    </tr>                
+                </tbody>
+            </table>
+            </md-table-container>
+        </div>
+    </md-card>
+
+<md-card style="padding-bottom: 20px">
+    <md-card-title>
+        <md-card-title-text>
+          <h2>Edit</h2>
+        </md-card-title-text>
+    </md-card-title>
+    <div layout-gt-xs="row" style="padding-left: 15px">
+        <md-input-container class="md-block" flex-gt-xs>
+            <label>First Name</label>
+            <input type="text" ng-model="currentUser.firstname">
+        </md-input-container>
+    </div>
+    <div layout-gt-xs="row" style="padding-left: 15px">
+        <md-input-container class="md-block" flex-gt-xs>
+            <label>Last Name</label>
+            <input type="text" ng-model="currentUser.lastname">
+        </md-input-container>
+    </div>
+    <div layout-gt-xs="row" style="padding-left: 15px">
+        <md-input-container class="md-block" flex-gt-xs>
+            <label>Email</label>
+            <input type="email" ng-model="currentUser.email">
+        </md-input-container>
+    </div>
+    <div layout-gt-xs="row" style="padding-left: 15px">
+        <md-input-container class="md-block" flex-gt-xs>
+            <label>Username</label>
+            <input type="text" ng-model="currentUser.username">
+        </md-input-container>
+    </div>
+    <div layout-gt-xs="row" style="padding-left: 15px">
+        <md-input-container class="md-block" flex-gt-xs>
+            <label>Password</label>
+            <input type="password" ng-model="currentUser.password">
+        </md-input-container>
+    </div>
+    <div layout-gt-xs="row">
+        <md-button class="md-raised" ng-click="controller.updateUser(currentUser)">Update</md-button>
+    </div>
+</md-card>

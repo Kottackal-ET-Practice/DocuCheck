@@ -1,0 +1,82 @@
+<md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+
+<md-card-title>
+    <md-card-title-text>
+      <center><h2>Register</h2></center>
+    </md-card-title-text>
+</md-card-title>
+
+<div class="col-md-12">
+<form name="test">
+
+<div  class="alert alert-success" ng-messages="test.firstname.$error" role="alert">
+    <div ng-message="required">Please enter the firstname</div>
+</div>
+
+<div layout-gt-sm="column">
+    <md-input-container class="md-block" flex-gt-xs style="line-height:10px">
+        <label>Firstname</label>
+        <input type="text" ng-model="user.firstname" name="firstname" required/>
+    </md-input-container>
+</div>
+
+<div  class="alert alert-success" ng-messages="test.lastname.$error" role="alert">
+    <div ng-message="required">Please enter the lastname</div>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs style="line-height:10px">
+        <label>Lastname</label>
+        <input type="text" ng-model="user.lastname" name="lastname" required/>
+    </md-input-container>
+</div>
+
+<div  class="alert alert-success" ng-messages="test.email.$error" role="alert">
+    <div ng-message="required">Please enter a value for this field.</div>
+    <div ng-message="email">This field must be a valid email address.</div>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Email</label>
+        <input type="email" name="email" ng-model="user.email" required/>
+    </md-input-container>
+</div>
+
+<div  class="alert alert-success" ng-messages="test.username.$error" role="alert">
+    <div ng-message="required">Please enter your username</div>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Username</label>
+        <input type="text" ng-model="user.username" name="username" required/>
+    </md-input-container>
+</div>
+
+<div  class="alert alert-success" ng-messages="test.password.$error" role="alert">
+    <div ng-message="required">Please enter a password</div>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input type="password" ng-model="user.password" name="password" required/>
+    </md-input-container>
+</div>
+
+<div layout-gt-xs="row">
+    <md-select ng-model="user.role" placeholder="Select Category" class="md-no-underline" required>
+        <md-option value='employer'>Employer</md-option>
+        <md-option value='user'>User</md-option>
+    </md-select>
+</div>
+
+<div layout-gt-xs="row">
+    <md-button ng-click="controller.register(user)">Register</md-button>
+</div>
+
+</form>
+
+</div>
+</md-card>

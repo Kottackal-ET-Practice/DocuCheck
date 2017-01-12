@@ -1,0 +1,43 @@
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<md-card style="padding-bottom: 15px">
+
+<md-card-title>
+    <md-card-title-text>
+      <h2>LOGIN</h2>
+    </md-card-title-text>
+  </md-card-title>
+<div class="col-md-12">
+<form name="test">
+<div class="alert alert-success" ng-show="test.user_name.$error" ng-messages="test.user_name.$error" role="alert">
+    <div ng-message="required">Please enter a username.</div>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Username</label>
+        <input type="text" ng-model="user.username" name="user_name" required/>
+    </md-input-container>
+</div>
+
+<div class="alert alert-success" ng-messages="test.user_pswd.$error" role="alert">
+    <div ng-message="required">Please enter a password</div>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input type="password" ng-model="user.password" name="user_pswd" required/>
+    </md-input-container>
+</div>
+
+<div layout-gt-xs="row">
+    <md-button class="md-raised" ng-click="controller.login(user)">Login</md-button>
+</div>
+</form>
+{{controller.message}}
+</div></md-card>

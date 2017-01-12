@@ -1,0 +1,61 @@
+<md-card>
+
+<md-card-title>
+    <md-card-title-text>
+      <center><h2>Add User</h2></center>
+    </md-card-title-text>
+</md-card-title>
+
+<div class="col-md-12">
+
+<div layout-gt-sm="column">
+    <md-input-container class="md-block" flex-gt-xs style="line-height:10px">
+        <label>Firstname</label>
+        <input type="text" ng-model="user.firstname" required/>
+    </md-input-container>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs style="line-height:10px">
+        <label>Lastname</label>
+        <input type="text" ng-model="user.lastname" required/>
+    </md-input-container>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Email</label>
+        <input type="email" ng-model="user.email" required/>
+    </md-input-container>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Username</label>
+        <input type="text" ng-model="user.username" required/>
+    </md-input-container>
+</div>
+
+<div layout-gt-xs="row">
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input type="password" ng-model="user.password" required/>
+    </md-input-container>
+</div>
+
+<div layout-gt-xs="row">
+    <md-select ng-model="user.role" placeholder="Select Category" class="md-no-underline" required>
+        <md-option value='employer'>Employer</md-option>
+        <md-option value='user'>User</md-option>
+        <md-option value="verifier">Verifier</md-option>
+        <md-option value="admin">Admin</md-option>
+    </md-select>
+</div>
+
+<div layout-gt-xs="row">
+    <md-button ng-click="controller.register(user)">Add</md-button>
+</div>
+
+
+</div>
+</md-card>

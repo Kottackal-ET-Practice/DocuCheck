@@ -1,0 +1,266 @@
+  <!-- Main view file -->
+
+<html ng-app="WhiteBoardApp" style="width: 100%; height: 100%">
+<head>
+	<title> DocuCheck </title>
+	  <link rel="stylesheet" href="vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/angular-material.css">
+    <link rel="stylesheet" href="vendor/angular-material-icons.css">
+    <link rel="stylesheet" href="vendor/md-data-table.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/lf-ng-md-file-input.css">
+
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/angular-aria.js"></script>
+    <script src="vendor/angular-animate.js"></script>
+    <script src="vendor/angular-material.js"></script>
+    <script src="vendor/angular-material-icons.js"></script>
+    <script src="vendor/angular-ui-router.min.js"></script>
+    <script src="vendor/angular-messages.js"></script>
+    <script src="vendor/md-data-table.min.js"></script>
+	  <script src="vendor/angular-route.min.js"></script>
+	  <script src="vendor/ng-file-upload-all.min.js"></script>
+	  <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+    <script src="vendor/lf-ng-md-file-input.js"></script>
+    <script src="vendor/video-background.module.js"></script>
+
+    <script src="whiteBoardApp.js"></script>
+    <script src="config.js"></script>
+    <script src="services/user.service.js"></script>
+
+	  <script type="text/javascript" src="login/login.controller.js"></script>
+	  <script type="text/javascript" src="profile/profile.controller.js"></script>
+	  <script type="text/javascript" src="main/main.controller.js"></script>
+	  <script type="text/javascript" src="register/register.controller.js"></script>
+    <script type="text/javascript" src="details/details.controller.js"></script>
+    <script type="text/javascript" src="verifier/verify.controller.js"></script>
+    <script type="text/javascript" src="admin/admin.controller.js"></script>
+    <script type="text/javascript" src="employer/employer.controller.js"></script>
+    <script type="text/javascript" src="user/user.controller.js"></script>
+
+
+</head>
+<body ng-controller="MainController as controller" layout="column">
+    <div>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+              <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
+                <ng-md-icon icon="menu"></ng-md-icon>
+              </md-button>
+              <h2><b>DOCUCHECK</b></h2>
+              <!-- <img src="logo2.png" width="200px" height="35px" alt="DocuCheck" style="margin-left: 20px"> -->
+              <span flex></span>
+              <a href="#profile" ng-show="currentUser">
+                <md-button>
+                    <b>{{currentUser.firstname+" "+currentUser.lastname}}</b>
+                </md-button>
+              </a>
+              </md-button>
+              <a href="#logout" ng-click="controller.logout()" ng-show="currentUser">
+                <md-button>
+                    <ng-md-icon icon="logout"></ng-md-icon>
+                </md-button>
+              </a>
+              <a href="#register" ng-hide="currentUser">
+                <md-button>
+                    Register
+                </md-button>
+              </a>
+              <a href="#login" ng-hide="currentUser">
+                <md-button>
+                    Login
+                </md-button>
+              </a>
+            </div>
+        </md-toolbar>
+    </div>
+
+    <div layout="row">
+    <md-sidenav ng-show="currentUser" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-list>
+      <md-item ng-hide="currentUser">
+        <a href="#register">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="edit"></ng-md-icon>
+            </div>
+            <div class="inset">Register
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item ng-hide="currentUser">
+        <a href="#login">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="login"></ng-md-icon>
+            </div>
+            <div class="inset">Login
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item ng-show="currentUser">
+        <a href="#profile">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="person"></ng-md-icon>
+            </div>
+            <div class="inset">Profile
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+
+      <md-divider></md-divider>
+      <md-subheader>Functions</md-subheader>
+      <md-item ng-show="currentUser.role=='user'">
+        <a href="#upload">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="file_upload"></ng-md-icon>
+            </div>
+            <div class="inset">Upload
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item ng-show="currentUser.role=='user'">
+        <a href="#document">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="description"></ng-md-icon>
+            </div>
+            <div class="inset">Document
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item ng-show="currentUser.role=='user'">
+        <a href="#viewrequest">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="pageview"></ng-md-icon>
+            </div>
+            <div class="inset">View Requests
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item ng-show="currentUser.role=='user'">
+        <a href="#permrequest">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="contacts"></ng-md-icon>
+            </div>
+            <div class="inset">Permitted Employers
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+
+      <md-item ng-show="currentUser.role=='verifier'">
+        <a href="#verify">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="check"></ng-md-icon>
+            </div>
+            <div class="inset">Verify
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item ng-show="currentUser.role=='verifier'">
+        <a href="#vhistory">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="history"></ng-md-icon>
+            </div>
+            <div class="inset">History
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+
+      <md-item ng-show="currentUser.role=='admin'">
+        <a href="#adaccview">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="people"></ng-md-icon>
+            </div>
+            <div class="inset">View Accounts
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item ng-show="currentUser.role=='admin'">
+        <a href="#adfileview">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="description"></ng-md-icon>
+            </div>
+            <div class="inset">View Files
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item ng-show="currentUser.role=='admin'">
+        <a href="#adminadd">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="person_add"></ng-md-icon>
+            </div>
+            <div class="inset">Add Users
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+
+      <md-item ng-show="currentUser.role=='employer'">
+        <a href="#emsearch">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="search"></ng-md-icon>
+            </div>
+            <div class="inset">Search Users
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+      <md-item ng-show="currentUser.role=='employer'">
+        <a href="#emview">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="people"></ng-md-icon>
+            </div>
+            <div class="inset">Views Permitted
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+
+      <md-item ng-show="currentUser">
+        <a href="#logout" ng-click="controller.logout()">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon icon="logout"></ng-md-icon>
+            </div>
+            <div class="inset">Logout
+            </div>
+          </md-item-content>
+        </a>
+      </md-item>
+    </md-list>
+    </md-sidenav>
+    <div layout="column" class="relative" layout-fill role="main">
+
+      <md-content style="background-color: #F8F9F9; height: 100%;">
+
+        <div ng-view style="width: 100%;"></div>
+
+      </md-content>
+	
+    </div>
+    </div>
+</body>
+</html>

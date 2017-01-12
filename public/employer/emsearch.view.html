@@ -1,0 +1,40 @@
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+          <h2>Permitted Users</h2>
+        </md-card-title-text>
+    </md-card-title>
+    <div layout-gt-xs="row" style="padding-left: 15px; padding-right: 10px;">
+        <md-input-container class="md-block" flex-gt-xs>
+            <label>Enter Keyword</label>
+            <input type="text" name="usrname" id="usrname" ng-model="usrname" required/>
+        </md-input-container>
+    </div>
+
+    <md-button class="md-raised" ng-click="controller.search(username)">Search</md-button>
+
+    <div class="table-responsive" ng-show="accounts">
+        <table md-table>
+            <thead md-head>
+                <tr md-row>
+                    <th md-column>Type</th>
+                    <th md-column>First Name</th>
+                    <th md-column>Last Name</th>
+                    <th md-column>Username</th>
+                    <th md-column>Email</th>  
+                    <th md-column>Request</th>                  
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="account in accounts | filter : {username:usrname}">
+                    <td md-cell>{{account.role}}</td>
+                    <td md-cell>{{account.firstname}}</td>
+                    <td md-cell>{{account.lastname}}</td>
+                    <td md-cell>{{account.username}}</td>
+                    <td md-cell>{{account.email}}</td>  
+                    <td md-cell><md-button class="md-raised" ng-click="controller.viewRequest(account.username,currentUser.username)">View</md-button></td>                
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</md-card>
